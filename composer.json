@@ -1,0 +1,27 @@
+{
+    "name": "maree/paymob",
+    "description": "package to pay with upaymob payment services",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "mohamed maree",
+            "email": "m7mdmaree26@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Maree\\Paymob\\" : "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Maree\\Paymob\\PaymobServiceProvider"
+            ]
+        }
+    }       
+}
+
