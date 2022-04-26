@@ -43,7 +43,7 @@ class Paymob {
         $currency      = config('paymob.currency');
         $apiKey        = config('paymob.API_KEY');
         $iframeId      = config('paymob.IFRAME_ID') ; // from account
-        $integrationId = (config('paymob.mode') == 'live') ? config('paymob.INTEGRATION_ID_LIVE') : config('paymob.INTEGRATION_ID_TEST') // from account page https://accept.paymob.com/portal2/en/PaymentIntegrations
+        $integrationId = (config('paymob.mode') == 'live') ? config('paymob.INTEGRATION_ID_LIVE') : config('paymob.INTEGRATION_ID_TEST'); // from account page https://accept.paymob.com/portal2/en/PaymentIntegrations
         $expiration    = config('paymob.EXPIRATION'); // in seconds
 
         $client = new \GuzzleHttp\Client();
@@ -106,7 +106,7 @@ class Paymob {
    */
     public static function checkoutResponseStatus(){
         $payment    = Request()->all();
-        if ($payment['success'] == "false") {
+        if (isset($payment['success']) && $payment['success'] == "false") {
             return ['key' => 'fail' , 'msg' => 'checkout failed','result' => $payment];
         }
         return ['key' => 'success' ,'msg' => 'checkout success' ,'result' => $payment ];
