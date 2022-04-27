@@ -47,15 +47,14 @@ class Paymob {
         $expiration    = config('paymob.EXPIRATION'); // in seconds
 
         $client = new \GuzzleHttp\Client();
-        # 1
+        # 1- login and create token
         $step1EndPoint = config('paymob.login_url');
         $response      = $client->post($step1EndPoint, [
           \GuzzleHttp\RequestOptions::JSON => ['api_key' => $apiKey],
         ]);
         $resArr = json_decode($response->getBody(), true);
         $token  = $resArr['token'];
-
-        # 2
+        # 2- send items 
         $step2EndPoint    = config('paymob.request_url');
         $orderRegisterRes = $client->post($step2EndPoint, [
           \GuzzleHttp\RequestOptions::JSON => [
@@ -69,7 +68,7 @@ class Paymob {
         $orderRegisterResArr = json_decode($orderRegisterRes->getBody(), true);
         $id                  = (string) $orderRegisterResArr['id'];
 
-        # 3
+        # 3- send billing_data
         $step3EndPoint = config('paymob.payment_url');
         $paymentKeyRes = $client->post($step3EndPoint, [
           \GuzzleHttp\RequestOptions::JSON => [
@@ -93,11 +92,12 @@ class Paymob {
 
         $paymentKeyResArr = json_decode($paymentKeyRes->getBody(), true);
         $paymentToken     = $paymentKeyResArr['token'];
-
-        $redirect_url = config('paymob.redirect_url');
+        
+        $redirect_url  = config('paymob.redirect_url');
         $redirect_url .= '/'.$iframeId.'?payment_token='.$paymentToken;
-        # 4
-        return redirect($redirect_url);
+        # 4 - redirect to payment page
+        return redirect()->to($redirect_url)->send();
+        // return redirect($redirect_url);
     }
 
   /**

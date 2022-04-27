@@ -1,6 +1,6 @@
 {
     "name": "maree/paymob",
-    "description": "package to pay with upaymob payment services",
+    "description": "package to pay with paymob payment services",
     "type": "library",
     "license": "MIT",
     "authors": [
