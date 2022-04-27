@@ -13,7 +13,8 @@
     "require": {},
     "autoload": {
         "psr-4": {
-            "Maree\\Paymob\\" : "src/"
+            "Maree\\Paymob\\" : "src/",
+            "Maree\\Paymob\\Tests\\": "tests/",
         }
     },
     "extra": {

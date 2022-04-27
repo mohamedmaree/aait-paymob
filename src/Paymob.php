@@ -97,7 +97,6 @@ class Paymob {
         $redirect_url .= '/'.$iframeId.'?payment_token='.$paymentToken;
         # 4 - redirect to payment page
         return redirect()->to($redirect_url)->send();
-        // return redirect($redirect_url);
     }
 
   /**
@@ -107,9 +106,9 @@ class Paymob {
     public static function checkoutResponseStatus(){
         $payment    = Request()->all();
         if (isset($payment['success']) && $payment['success'] == "false") {
-            return ['key' => 'fail' , 'msg' => 'checkout failed','result' => $payment];
+           return response()->json(['key' => 'fail' , 'msg' => 'checkout failed','result' => $payment]);
         }
-        return ['key' => 'success' ,'msg' => 'checkout success' ,'result' => $payment ];
+        return response()->json(['key' => 'success' ,'msg' => 'checkout success' ,'result' => $payment ]);
     }
    
 }
