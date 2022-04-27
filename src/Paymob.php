@@ -103,7 +103,8 @@ class Paymob {
    * Obtain Paymob payment information
    * @return void
    */
-    public static function checkoutResponseStatus(){
+    public static function checkoutResponseStatus()
+    {
         $payment    = Request()->all();
         if (isset($payment['success']) && $payment['success'] == "false") {
            return response()->json(['key' => 'fail' , 'msg' => 'checkout failed','result' => $payment]);
