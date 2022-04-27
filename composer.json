@@ -14,7 +14,7 @@
     "autoload": {
         "psr-4": {
             "Maree\\Paymob\\" : "src/",
-            "Maree\\Paymob\\Tests\\": "tests/",
+            "Maree\\Paymob\\Tests\\": "tests/"
         }
     },
     "extra": {
