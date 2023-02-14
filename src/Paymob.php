@@ -107,9 +107,9 @@ class Paymob {
     {
         $payment    = Request()->all();
         if (isset($payment['success']) && $payment['success'] == "false") {
-           return response()->json(['key' => 'fail' , 'msg' => 'checkout failed','result' => $payment]);
+          return response()->json(['key' => 'success' ,'msg' => 'checkout success' ,'result' => $payment ]);
         }
-        return response()->json(['key' => 'success' ,'msg' => 'checkout success' ,'result' => $payment ]);
+        return response()->json(['key' => 'fail' , 'msg' => 'checkout failed','result' => $payment]);
     }
    
 }
