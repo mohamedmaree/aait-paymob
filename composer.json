@@ -20,7 +20,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "maree\\paymob\\PaymobServiceProvider"
+                "Maree\\Paymob\\PaymobServiceProvider"
             ]
         }
     }       

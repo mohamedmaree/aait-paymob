@@ -1,5 +1,4 @@
 <?php
-
 namespace Maree\Paymob;
 
 use Illuminate\Support\ServiceProvider;
