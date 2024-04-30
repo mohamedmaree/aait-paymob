@@ -96,7 +96,8 @@ class Paymob {
         $redirect_url  = config('paymob.redirect_url');
         $redirect_url .= '/'.$iframeId.'?payment_token='.$paymentToken;
         # 4 - redirect to payment page
-        return redirect()->to($redirect_url)->send();
+        // return redirect()->to($redirect_url)->send();
+        return response()->json(['key' => 'success' ,'redirect_url' => $redirect_url,'checkout_id' => $id ]); 
     }
 
   /**
