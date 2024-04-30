@@ -48,22 +48,27 @@ use Maree\Paymob\Paymob;
                 "country"         => "EG",
                 "state"           => "elnzha",
             ] ; 
-Paymob::checkout($amount_cents = 100 , $items,$billing_data ,$delivery_needed = false)  
+$response = Paymob::checkout($amount_cents = 100 , $items,$billing_data ,$delivery_needed = false);
+//save $response['checkout_id'] in transactions history table
+return redirect()->to($response['redirect_url'])->send();  
 
 ```
 
 
 ## note 
-- define (callback) the checkout return response url route EX : https://mysite.com/paymentresponse
-- create route for response url 'paymentresponse' 
-EX: Route::get('paymentresponse', 'PaymentsController@paymentresponse')->name('paymentresponse'); 
-- create function for checkout response 'paymentresponse'
+- define (callback) the checkout return response url in your paymob account route EX : https://mysite.com/payment-response
+- create route for response url 'payment-response' 
+EX: Route::get('payment-response', 'PaymentsController@paymentResponse')->name('payment-response'); 
+- create function for checkout response 'paymentResponse'
 - use that function to check if payment failed or success
 
 ## inside 'paymentresponse' function use:
 ```php
 use Maree\Paymob\Paymob;
-$response = Paymob::checkoutResponseStatus();  
+$response = Paymob::checkoutResponseStatus();
+$result = $response['result'];
+//get checkout_id to update transaction history or order status to paid
+$checkout_id = $result['order'];
 
 ```
 return response like: 
